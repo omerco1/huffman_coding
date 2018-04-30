@@ -50,31 +50,40 @@ int main(int argc, char* argv[]) {
 
     }
   }
+  //cout << acum <<endl;
   int char_blocks;
   int padding = acum.length()%8;
+  //char pad = char(padding);
+  //cout << "OMER " <<endl;
+  cout << "pad: ";
+  cout << padding << "\n";
+
   if (padding ==0) {
     char_blocks = acum.length()/8;
   } else {
-    char_blocks = acum.length()/8 + 1;
-    for(int i =0; i < padding; i++){
+    char_blocks = acum.length()/8 + 1; //ADD ONE?????
+    for(int i =0; i < 8-padding; i++){
       acum += "0";
     }
+    //char_blocks = acum.length()/8 + 1;
+
   }
   //TO DO: GET REMAINDER TO OUTPUT LAST BITS
 
+  //cout << "CHAR BLOCKS IS: " <<char_blocks <<endl;
 
   for(int i = 0; i < char_blocks; i++) {
 
-        string temp = acum.substr(i*8,i*8+8);
+        string temp = acum.substr(i*8,8);
 
-        bitset<8> b(temp);
-        char* c = (char*)&b;
-        cout << *c;
-        //of.write(c, sizeof(c));
-        // auto bitset = std::bitset<8>("00111111");
-        // std::cout << static_cast<char>(bitset.to_ulong()) << std::endl;
+        // bitset<8> b(temp);
+        // char* c = (char*)&b;
+        // cout << *c;
 
-        //of.write(static_cast<char>(bitset.to_ulong()), sizeof(bitset));
+
+        auto bitset = std::bitset<8>(temp);
+        char c= static_cast<char>(bitset.to_ulong());
+        cout << c;
 
   }
 
