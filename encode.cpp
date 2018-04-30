@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <bitset>
 #include <string>
 #include <map>
 
@@ -28,26 +29,56 @@ int main(int argc, char* argv[]) {
 
     the_code.insert(pair<int,string>(ascii,word));
   }
-  //debug print out the map 
+  //debug print out the map
   // for (it=the_code.begin(); it!=the_code.end(); ++it) {
   //     cout << it->first << "     " << it->second <<endl;
   // }
 
+  ofstream of;
+  of.open("test.txt");
+
   //STDIN FROM USER
+  string acum;
   for(string line; getline(cin, line) && line.compare("");) {
     line += "\n";
     for(int i = 0; i < line.length(); i++) {
       int index_char = line[i];
       it = the_code.find(index_char);
       string code = it->second;
-      cout <<code;
+
+      acum += code;
 
     }
   }
+  int char_blocks;
+  int padding = acum.length()%8;
+  if (padding ==0) {
+    char_blocks = acum.length()/8;
+  } else {
+    char_blocks = acum.length()/8 + 1;
+    for(int i =0; i < padding; i++){
+      acum += "0";
+    }
+  }
+  //TO DO: GET REMAINDER TO OUTPUT LAST BITS
+
+
+  for(int i = 0; i < char_blocks; i++) {
+
+        string temp = acum.substr(i*8,i*8+8);
+
+        bitset<8> b(temp);
+        char* c = (char*)&b;
+        cout << *c;
+        //of.write(c, sizeof(c));
+        // auto bitset = std::bitset<8>("00111111");
+        // std::cout << static_cast<char>(bitset.to_ulong()) << std::endl;
+
+        //of.write(static_cast<char>(bitset.to_ulong()), sizeof(bitset));
+
+  }
 
   return 0;
-
-
 
 
 }
