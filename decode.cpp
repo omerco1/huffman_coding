@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
 
   //IF YOU INCORRECTLY ENTERED THE FILE NAME TO ARGV[] I WILL OPEN IT MANUALLY
   if (!in.is_open()) {
-    cout << "There was an error opening your file... opening codewords.txt." <<endl;
+    cout << "There was an error opening your file... manually opening codewords.txt." <<endl;
     return 0;
     in.open("codewords.txt");
   }
@@ -42,17 +42,14 @@ int main(int argc, char* argv[]) {
   ss >> word;
   ss >> g;
   padding = stoi(g);
-  //cout << "PADDING IS: " <<padding<<endl;
-
-  cin >> jibberish;
-  //cout << "JIBERISH IS: " <<endl;
-  //cout << jibberish << endl;
 
   //cin >> jibberish;
-  //cout << "OK SO: " <<jibberish<<endl;
-  //getline(cin, jibberish);
+  int input;
+	while ((input = getc(stdin)) != EOF) {
+		jibberish += static_cast<char>(input);
+	}
 
-  //cout << "NOTE THAT: " <<jibberish.length()<<endl;
+
   string sum;
   for(int i = 0; i < jibberish.length(); i++) {
 
