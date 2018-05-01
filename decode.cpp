@@ -44,9 +44,9 @@ int main(int argc, char* argv[]) {
   padding = stoi(g);
 
   //cin >> jibberish;
-  int input;
-	while ((input = getc(stdin)) != EOF) {
-		jibberish += static_cast<char>(input);
+  int user_in;
+	while ((user_in = getc(stdin)) != EOF) {
+		jibberish += static_cast<char>(user_in);
 	}
 
 
