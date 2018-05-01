@@ -68,8 +68,25 @@ int main(int argc, char* argv[]) {
 
   string code;
   string final_output = "";
+  //sum = sum.substr(0, sum.length()-padding);
   for(int i = 0; i < sum.length()-padding; i++) {
     code += sum[i];
+    // if(i==sum.length()-8){
+    //   string g = sum.substr(sum.length()-8, 8);
+    //   //cout << "NOTE THAT G IS: " << g <<endl;
+    //   bitset<8> b =bitset<8>(g);
+    //   //unsigned char c = static_cast<char>(b.to_ulong() >> (8-padding));
+    //   //cout << (b >> (8-padding)).to_string() <<endl;
+    //   //c = c>>padding;
+    //   string f = (b >> (8-padding)).to_string();
+    //   f = f.substr(8-padding, f.length());
+    //   cout << f <<endl;
+    //   //out << "TESTING: " << f <<endl;
+    //   it = the_code.find(f);
+    //   char y = it->second;
+    //   final_output += y;
+    //   break;
+    // }
     if(the_code.count(code)!=0) {
       it = the_code.find(code);
   	  char x = it->second;

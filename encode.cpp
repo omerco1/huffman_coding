@@ -34,8 +34,8 @@ int main(int argc, char* argv[]) {
   //     cout << it->first << "     " << it->second <<endl;
   // }
 
-  ofstream of;
-  of.open("test.txt");
+  //ofstream of;
+  //of.open("test.txt");
 
   //STDIN FROM USER
   string acum;
@@ -50,36 +50,38 @@ int main(int argc, char* argv[]) {
 
     }
   }
-  //cout << acum <<endl;
+
   int char_blocks;
   int padding = acum.length()%8;
-  //char pad = char(padding);
-  //cout << "OMER " <<endl;
-  cout << "pad: ";
-  cout << padding << "\n";
+  if(padding == 0){
+    cout << "pad: ";
+    cout << padding << "\n";
+  }
+  else {
+    padding = 8-acum.length()%8;
+    cout << "pad: ";
+    cout << padding << "\n";
+  }
+
 
   if (padding ==0) {
     char_blocks = acum.length()/8;
   } else {
     char_blocks = acum.length()/8 + 1; //ADD ONE?????
-    for(int i =0; i < 8-padding; i++){
+    for(int i =0; i < padding; i++){
+    //  cout << "I AM PADDING" <<endl;
       acum += "0";
     }
-    //char_blocks = acum.length()/8 + 1;
-
   }
-  //TO DO: GET REMAINDER TO OUTPUT LAST BITS
 
-  //cout << "CHAR BLOCKS IS: " <<char_blocks <<endl;
-
-  for(int i = 0; i < char_blocks; i++) {
+  int i;
+  for(i = 0; i < char_blocks; i++) {
 
         string temp = acum.substr(i*8,8);
 
         // bitset<8> b(temp);
         // char* c = (char*)&b;
         // cout << *c;
-
 
         auto bitset = std::bitset<8>(temp);
         char c= static_cast<char>(bitset.to_ulong());
